@@ -10,6 +10,10 @@ public class PersonRowValidator  implements RowValidators<PersonBean>{
     @Override
     public boolean validateRow(PersonBean rowData) {
         log.debug("PersonRowValidator :: validateRow : {}", rowData);
+        if (rowData != null && rowData.getEmail() == null) {
+            log.warn("Row data is null");
+            return false;
+        }
         return true;
     }
 }

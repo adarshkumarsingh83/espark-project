@@ -10,6 +10,11 @@ public class AddressRowValidator implements RowValidators<AddressBean>{
     @Override
     public boolean validateRow(AddressBean rowData) {
         log.debug("AddressRowValidator :: validateRow : {}", rowData);
+
+        if (rowData != null && rowData.getZipCode() == null) {
+            log.warn("Row data is null");
+            return false;
+        }
         return true;
     }
 }

@@ -41,9 +41,16 @@
         "phoneNumber": "4567890"
       }
     ],
-    "failed": []
+    "failed": [
+      {
+        "id": 6,
+        "personName": "sonu",
+        "email": null,
+        "phoneNumber": "6"
+      }
+    ]
   },
-  "message": "Excel file is processed successfully"
+  "message": "Excel file is processed with failed Data "
 }
 ```
 
