@@ -1,0 +1,9 @@
+
+espark:
+  excel:
+    defaultConfig:
+      name: default
+      description: Default Excel Configuration
+      rowTransformer: "default-transformer"
+      className: "com.espark.adarsh.excel.bean.DefaultBean"
+      sheet: [0]

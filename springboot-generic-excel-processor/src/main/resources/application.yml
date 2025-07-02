@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: springboot-generic-excel-processor
+  config:
+    import: classpath:excel-config/defaultConfig.yml,excel-config/personConfig.yml,excel-config/addressConfig.yml
+
+espark:
+  mappings:
+    default: defaultConfig
+    person: personConfig
+    address: addressConfig

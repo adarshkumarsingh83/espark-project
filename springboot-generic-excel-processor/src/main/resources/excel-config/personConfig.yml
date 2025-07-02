@@ -1,0 +1,58 @@
+
+espark:
+  excel:
+    personConfig:
+      name: "person"
+      description: Person Excel Configuration
+      rowTransformer: "person-transformer"
+      className: "com.espark.adarsh.excel.bean.PersonBean"
+      validators:
+          - "person-validator"
+      sheet: [0]
+      columns:
+        - columnName: "id"
+          columnIndex: 0
+          transformers:
+            - "integer"
+          setterMethod: "setId"
+          columnMeta:
+            type: "Integer"
+            format: ""
+            required: true
+            defaultValue: "0"
+            description: "Unique Identifier"
+        - columnName: "personName"
+          columnIndex: 1
+          transformers:
+            - "string"
+          setterMethod: "setPersonName"
+          columnMeta:
+            type: "String"
+            format: ""
+            required: true
+            defaultValue: ""
+            description: " Name of the Person"
+        - columnName: "email"
+          columnIndex: 2
+          transformers:
+            - "string"
+            - "email"
+          setterMethod: "setEmail"
+          columnMeta:
+            type: "String"
+            format: "email"
+            required: true
+            defaultValue: ""
+            description: "Email Address"
+        - columnName: "phoneNumber"
+          columnIndex: 3
+          transformers:
+            - "string"
+            - "phone"
+          setterMethod: "setPhoneNumber"
+          columnMeta:
+            type: "String"
+            format: "phone"
+            required: false
+            defaultValue: ""
+            description: "Phone Number"

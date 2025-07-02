@@ -1,0 +1,67 @@
+espark:
+  excel:
+    addressConfig:
+      name: "address"
+      description: "Address Excel Configuration"
+      rowTransformer: "address-transformer"
+      className: "com.espark.adarsh.excel.bean.AddressBean"
+      validators:
+        - "address-validator"
+      sheet: [0]
+      columns:
+        - columnName: "addressId"
+          columnIndex: 0
+          transformers:
+              - "integer"
+          setterMethod: "setAddressId"
+          columnMeta:
+              type: "Integer"
+              format: ""
+              required: true
+              defaultValue: "0"
+              description: "Unique Address Identifier"
+        - columnName: "street"
+          columnIndex: 1
+          transformers:
+              - "string"
+          setterMethod: "setStreet"
+          columnMeta:
+              type: "String"
+              format: ""
+              required: true
+              defaultValue: ""
+              description: "Street Name"
+        - columnName: "city"
+          columnIndex: 2
+          transformers:
+              - "string"
+          setterMethod: "setCity"
+          columnMeta:
+              type: "String"
+              format: ""
+              required: true
+              defaultValue: ""
+              description: "City Name"
+        - columnName: "state"
+          columnIndex: 3
+          transformers:
+              - "string"
+          setterMethod: "setState"
+          columnMeta:
+              type: "String"
+              format: ""
+              required: true
+              defaultValue: ""
+              description: "State Name"
+        - columnName: "zipCode"
+          columnIndex: 4
+          transformers:
+              - "string"
+              - "zipcode"
+          setterMethod: "setZipCode"
+          columnMeta:
+              type: "String"
+              format: "zipcode"
+              required: false
+              defaultValue: ""
+              description: "ZIP Code"
