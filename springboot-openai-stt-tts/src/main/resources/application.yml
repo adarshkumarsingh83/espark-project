@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: "springboot-openai-speach-to-text"
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+espark:
+  openai:
+    apikey: ${OPENAI_API_KEY}
+    api-configs:
+      speech-to-text:
+        apiBaseUrl: https://api.openai.com
+        apiUrl: /v1/audio/transcriptions
+        headers:
+          Authorization: "Bearer ${OPENAI_API_KEY}"
+        bodyConfig:
+          model: "whisper-1"
+      text-to-speech:
+        apiBaseUrl: https://api.openai.com
+        apiUrl: /v1/audio/speech
+        headers:
+          Content-Type: "application/json"
+          Authorization: "Bearer ${OPENAI_API_KEY}"
+        bodyConfig:
+          model: "tts-1"
+          voice: "alloy"
+          format: "mp3"
+          fileName: "output"
