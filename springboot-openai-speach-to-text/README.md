@@ -7,8 +7,7 @@
 ```
 {"text":"Hello, Adarsh is my name, Shakti is my daughter.","usage":{"type":"duration","seconds":12}}
 ```
-
-
+# openai-text-to-speech
 ![image](img/text_to_speech.png)
 * curl --location 'localhost:9090/convert/text/audio' \
   --header 'Content-Type: application/json' \
