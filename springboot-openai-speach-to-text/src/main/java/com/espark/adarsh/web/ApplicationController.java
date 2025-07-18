@@ -1,11 +1,14 @@
 package com.espark.adarsh.web;
 
-import com.espark.adarsh.bean.TranscriptText;
-import com.espark.adarsh.service.AudioToTextService;
+import com.espark.adarsh.bean.SpeechToTextResponse;
+import com.espark.adarsh.bean.TextToSpeechRequest;
+import com.espark.adarsh.service.SpeechToTextService;
+import com.espark.adarsh.service.TextToSpeechService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,10 +20,13 @@ import java.io.InputStream;
 @RestController
 public class ApplicationController {
 
-    private AudioToTextService audioToTextService;
+    private SpeechToTextService speechToTextService;
+    private TextToSpeechService textToSpeechService;
 
-    public ApplicationController(AudioToTextService audioToTextService) {
-        this.audioToTextService = audioToTextService;
+    public ApplicationController(SpeechToTextService speechToTextService,
+                                 TextToSpeechService textToSpeechService) {
+        this.speechToTextService = speechToTextService;
+        this.textToSpeechService = textToSpeechService;
     }
 
 
@@ -35,12 +41,24 @@ public class ApplicationController {
         try {
             InputStream inputStream = file.getInputStream();
             // send to transcript
-            TranscriptText transcriptText = audioToTextService.transcriberInMemory.apply(inputStream);
-            return ResponseEntity.ok().body(transcriptText.getText());
+            SpeechToTextResponse speechToTextResponse = speechToTextService.transcriberInMemory.apply(inputStream);
+            return ResponseEntity.ok().body(speechToTextResponse.getText());
 
         } catch (IOException e) {
             log.error("Error processing file upload", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload the file due to an error: " + e.getMessage());
+        }
+    }
+
+    @PostMapping(value = "/convert/text/audio", consumes = {"application/json"})
+    public ResponseEntity<String> convertTextToAudio(@RequestBody TextToSpeechRequest textToSpeechRequest) {
+        try {
+            String response = textToSpeechService.convertTextToSpeech.apply(textToSpeechRequest);
+            return ResponseEntity.ok()
+                    .body(response);
+        } catch (Exception e) {
+            log.error("Error converting text to audio", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to convert text to audio: " + e.getMessage());
         }
     }
 

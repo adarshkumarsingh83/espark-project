@@ -9,7 +9,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TranscriptText {
+public class SpeechToTextResponse {
 
     private String text;
+    private Usage usage;
+
+    @Getter
+    @Setter
+    public static final class Usage {
+        private String type;
+        private Integer seconds;
+    }
 }
