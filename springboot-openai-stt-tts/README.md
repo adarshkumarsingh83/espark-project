@@ -1,5 +1,7 @@
 # springboot-openai-stt-tts
 
+* [open api doucment](https://platform.openai.com/docs/overview)
+
 ## openai-speech-to-text
 
 ![image](img/speech_to_text.png)
